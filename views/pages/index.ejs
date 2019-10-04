@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+
+<html lang = "fr">
+	<head>
+		<title>url</title>
+		<meta charset="utf-8"/>
+		<link rel="stylesheet" type="text/css" href="/assets/design.css"/>
+		<script type = "text/javascript" src = "/assets/jQuery_3.3.1.js"></script>
+		<script type = "text/javascript" src = "/assets/code.js"></script>
+		<meta name = "viewport" content = "width=divice-width, initial-scale=1.0"/>
+	</head>
+	<body>
+		<% include header %>
+		<section>
+			<div class = "url">
+				<form class = "form_url" action = "/" method = "post">
+					<input class = "input_url" type = "text" name = "input_url" placeholder = "http://exemple.fr/truc/?machin=truc&d=qdfZf4"/>
+					<input class = "sub_url" type = "submit" name = "sub_url" value = "raccourcir"/>
+				</form>
+			</div>
+			<div class = "info_url">
+				<% if (locals.lien) { %>
+					<%= lien %>
+				<% } %>
+			</div>
+		</section>
+		<% include footer %>
+	</body>
+</html>
