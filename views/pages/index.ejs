@@ -18,11 +18,11 @@
 					<input class = "sub_url" type = "submit" name = "sub_url" value = "raccourcir"/>
 				</form>
 			</div>
-			<div class = "info_url">
-				<% if (locals.lien) { %>
+			<% if (locals.lien) { %>
+				<div class = "info_url">
 					<%= lien %>
-				<% } %>
-			</div>
+				</div>
+			<% } %>
 		</section>
 		<% include footer %>
 	</body>

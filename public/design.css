@@ -5,8 +5,9 @@ html{
 	font-family : 'Source Sans Pro', sans-serif;
 	background-color : #EFEFEF;
 	font-weight : 300;
+	color : #444;
 	font-size : 19px;
-	color : #4E4E4E;
+	/*line-height : 21px;*/
 }
 header{
 	/*box-shadow : 0 5px 10px -5px #B8B8B8;*/
@@ -81,6 +82,9 @@ section, .large_head{
 	font-family: 'Source Sans Pro';
 	font-size : 20px;
 	margin-left : -5px;
+}
+.url_info{
+
 }
 /*.sub_url:hover{
 	border : 1px solid #2E7EFF;

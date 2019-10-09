@@ -11,6 +11,7 @@ const conn = mysql.createConnection({
 	password : '',
 	database : 'url'
 })
+conn.connect()
 
 app.set('view engine', 'ejs')
 
@@ -22,7 +23,6 @@ app.get('/', (req, res) => {
 })
 app.post('/', (req, res) => {
 	if (req.body.input_url !== undefined && req.body.input_url !== '') {
-		conn.connect()
 
 		let url_long = req.body.input_url, url_court = '', compt = 0
 		url_long = url_long.toLowerCase()
@@ -40,17 +40,24 @@ app.post('/', (req, res) => {
 			url_long : url_long,
 			url_court : url_court
 		}
-		conn.query('INSERT INTO url SET ?', sql, (err, res, fields) => {if (err) throw err})
 
-		conn.end()
+		conn.query('INSERT INTO url SET ?', sql, (err, res, fields) => {if (err) throw err})
+		
 		res.render('pages/index', {lien : domain + 'url/' + url_court})
 	}
 })
-// app.get('/[a-zA-Z]{10}', (req, res) => {
-// 	console.log(req.params)
-// 	res.render('pages/index')
-// })
 app.get('/url/:url', (req, res) => {
-	res.render('pages/lien', {url : req.params.url})
+	if (req.params.url !== undefined && req.params.url !== '') {
+		let url_court = req.params.url, url_long2 = '', compt = 0
+		conn.query('SELECT * FROM url WHERE url_court = ?', [url_court], (err, res2, fields) => {
+			if (err) throw err
+			if (res2.lenght !== 0)
+				url_long2 = res2[0].url_long
+			else
+				url_long2 = 'aucune adresse trouvé'
+			
+			res.render('pages/lien', {url : url_long2})
+		})
+	}
 })
 app.listen(8080)
