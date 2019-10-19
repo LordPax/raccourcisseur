@@ -1,21 +1,13 @@
-const rand = (min, max) => {
-	return Math.floor(Math.random() * (max - min + 1) + min)
+const rand = (min, max) => Math.floor(Math.random() * (max - min + 1) + min)
+
+const str_rand = (taille, f, char = '') => {
+	const char_rand = f(0, 1) === 1 ? f(65, 90) : f(97, 122)
+	const tmp = String.fromCharCode(char_rand)
+
+	return taille > 0 ? str_rand(taille - 1, f, char + tmp) : char
 }
 
-const str_rand = (taille) => {
-	let str = '', tmp = ''
-
-	for(let i = 0; i < taille; i++){
-		if (rand(0, 1) == 1)
-			tmp = String.fromCharCode(rand(65, 90))
-		else
-			tmp = String.fromCharCode(rand(97, 122))
-
-		str += tmp
-	}
-
-	return str
-}
+//console.log(str_rand(5, rand))
 
 module.exports = {
 	rand : rand,
